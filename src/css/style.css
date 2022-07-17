@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial';
+  position: relative;
+}
+
+#map {
+  z-index: 1;
+}
+
+.yform {
+  padding: 30px 5px;
+  max-width: 333px;
+  /* max-width: 353px;
+  background: #fff;
+  
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  z-index: 1000;
+  top: 0; */
+}
+
+.yform.claster {
+  padding: 0;
+}
+
+.yform .reviews-form {
+  border-bottom: 1px solid #e7e7e7;
+  margin-bottom: 14px;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.yform::after {
+  border: 16px solid transparent;
+  border-top: 17px solid white;
+  content: '';
+  position: absolute;
+  bottom: -33px;
+  left: 80px;
+}
+
+.reviews-form-line {
+  margin-bottom: 20px;
+  color: #8f8f8f;
+  font-size: 16px;
+}
+
+.yform .reviews-form .reviews-user,
+.yform .reviews-form .reviews-place {
+  margin-right: 8px;
+}
+
+.yform .reviews-form .reviews-user {
+  color: #000000;
+}
+
+.reviews-form-top {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.yform .yform-title {
+  font-family: 'Arial';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2em;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.yform .y_input {
+  background: #ffffff;
+  border: 1px solid #1371c8;
+  border-radius: 3px;
+  width: 100%;
+  outline: none;
+  height: 38px;
+  padding: 0 11px;
+  font-size: 14px;
+  font-family: 'Arial';
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border: 1px solid #cfcfcf;
+}
+
+.yform .btn {
+  background: #ff8663;
+  border-radius: 3px;
+  padding: 9px 16px;
+  color: #ffffff;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.yform .y_textarea {
+  width: 100%;
+  resize: none;
+  height: 98px;
+  padding: 7px 11px;
+  border: 1px solid #cfcfcf;
+  margin-bottom: 19px;
+  font-size: 14px;
+  outline: none;
+  font-size: 14px;
+  font-family: 'Arial';
+}
+
+.close-form {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='15' height='16' viewBox='0 0 15 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M0 1.28249L0.707107 0.575378L14.8492 14.7175L14.1421 15.4246L0 1.28249Z' fill='%23A9A9A9'/%3e%3cpath d='M15 1.28249L14.2929 0.575378L0.150758 14.7175L0.857865 15.4246L15 1.28249Z' fill='%23A9A9A9'/%3e%3c/svg%3e ");
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+/* .ymaps-2-1-79-balloon__content {
+  padding: 0 !important;
+  margin: 0 !important;
+} */
