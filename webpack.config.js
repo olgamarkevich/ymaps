@@ -17,6 +17,7 @@ module.exports = {
   output: {
     filename: '[name].[hash].js',
     path: path.resolve('dist'),
+    // path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
     index: 'index.html',
@@ -42,7 +43,7 @@ module.exports = {
   },
   plugins: [
     new HtmlPlugin({
-      title: 'GeoObject',
+      title: 'CHAT',
       template: 'index.hbs',
     }),
     new CleanWebpackPlugin(['dist']),
