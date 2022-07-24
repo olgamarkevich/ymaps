@@ -1,82 +1,19 @@
 <div class='chat'>
+  <style id='avatars'></style>
   <div class='chat-l'>
-    <div class='chat-head'>
-      <div class='chat-user-line'>
-        <div class='chat-user-avatar'></div>
-        <div class='chat-user-label'>Маркевич Ольга</div>
-      </div>
-    </div>
+    <div class='chat-head'></div>
 
-    <div class='chat-users'>
-      <div class='chat-user-line'>
-        <div class='chat-user-avatar'></div>
-        <div class='chat-user-label'>Маркевич Ольга</div>
-      </div>
-
-      <div class='chat-user-line'>
-        <div class='chat-user-avatar'></div>
-        <div class='chat-user-label'>Маркевич Дмитрий</div>
-      </div>
-    </div>
+    <div class='chat-users'></div>
   </div>
+
   <div class='chat-r'>
     <div class='chat-title'>
       <div class='chat-title-label'>Чат</div>
-      <div class='chat-title-number'>2 участника</div>
+      <div class='chat-title-number'><span id='numberUsers'></span>
+        участника</div>
     </div>
 
-    <div id='messageContainer' class='chat-body'>
-
-      <div class='chat-info'>Пользователь вошел в чат</div>
-
-      <div class='chat-line'>
-        <div class='chat-line-avatar'></div>
-        <div class='chat-line-user'>Boroda23</div>
-        <div class='chat-line-i'>
-          <div class='chat-line-mess'>
-            <div class='chat-line-label'>Привет!</div>
-            <span class='chat-line-date'>17:55</span>
-          </div>
-        </div>
-        <div class='chat-line-i'>
-          <div class='chat-line-mess'>
-            <div class='chat-line-label'>Как дела?!</div>
-            <span class='chat-line-date'>17:55</span>
-          </div>
-        </div>
-      </div>
-
-      <div class='chat-line active'>
-        <div class='chat-line-avatar'></div>
-        <div class='chat-line-user'>You</div>
-        <div class='chat-line-i'>
-          <div class='chat-line-mess'>
-            <div class='chat-line-label'>Привет!</div>
-            <span class='chat-line-date'>17:55</span>
-          </div>
-        </div>
-        <div class='chat-line-i'>
-          <div class='chat-line-mess'>
-            <div class='chat-line-label'>Как дела?!</div>
-            <span class='chat-line-date'>17:55</span>
-          </div>
-        </div>
-      </div>
-
-      <div class='chat-line'>
-        <div class='chat-line-avatar'></div>
-        <div class='chat-line-user'>Yfdfgdfgdfou</div>
-        <div class='chat-line-i'>
-          <div class='chat-line-mess'>
-            <div
-              class='chat-line-label'
-            >Приветdfsdfsdfsdfjksjfklsjdfksdjkfljsdklfjskldfj!</div>
-            <span class='chat-line-date'>17:55</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <div id='messageContainer' class='chat-body'></div>
 
     <div class='chat-send'>
       <input
