@@ -16,6 +16,8 @@ const userActive = document.querySelector('.chat-head');
 const users = document.querySelector('.chat-users');
 const avatarsStyle = document.querySelector('#avatars');
 
+const avatarForma = document.querySelector('#avatarForma');
+
 let user = {};
 let sendMess = {};
 
@@ -23,17 +25,29 @@ loginBtn.addEventListener('click', function () {
   if (loginUser.value.replace(/\s+/g, '').length) {
     user.nameUser = loginUser.value;
     user.type = 'id';
+
     socket.send(JSON.stringify(user));
+
     loginForma.style.display = 'none';
     chatForma.style.display = 'flex';
     loginUser.value = '';
 
     const newUserActive = `
     <div class="chat-user-line">
-        <div id='avatar' class="chat-user-avatar" ><input id="file" type="file" class="file-style"/></div>
+        <div id='avatar' class="chat-user-avatar"></div>
         <div class="chat-user-label">${user.nameUser}</div>
     </div>`;
     userActive.innerHTML += newUserActive;
+
+    document.querySelector('.avatar-load-label').textContent = user.nameUser;
+
+    document.querySelector('#avatar').addEventListener('click', function () {
+      avatarForma.style.display = 'block';
+    });
+
+    document
+      .querySelector('#avatar-btn-cancel')
+      .addEventListener('click', closeForma);
 
     var avatarInput = document.getElementById('file');
     avatarInput.addEventListener('change', function () {
@@ -55,15 +69,25 @@ function getBase64(file) {
   reader.onload = function () {
     user.avatar = reader.result;
     document.querySelector(
-      '#avatar'
+      '#avatar-load'
     ).style.backgroundImage = `url('${user.avatar}')`;
+    document.querySelector('#avatar-load').style.backgroundSize = 'cover';
 
-    let avatar = {
-      type: 'avatar',
-      id: user.id,
-      avatarPhoto: reader.result,
-    };
-    socket.send(JSON.stringify(avatar));
+    document
+      .querySelector('#avatar-btn-load')
+      .addEventListener('click', function () {
+        document.querySelector(
+          '#avatar'
+        ).style.backgroundImage = `url('${user.avatar}')`;
+
+        let avatar = {
+          type: 'avatar',
+          id: user.id,
+          avatarPhoto: reader.result,
+        };
+        socket.send(JSON.stringify(avatar));
+        closeForma();
+      });
   };
   reader.onerror = function (error) {
     console.log('Error: ', error);
@@ -142,6 +166,7 @@ socket.addEventListener('message', function (event) {
           </div>
         `;
     chatContainer.innerHTML += message;
+    messageContainer.scrollTop = messageContainer.scrollHeight;
   }
 });
 
@@ -171,3 +196,7 @@ function sendMessage() {
 }
 
 sendButton.addEventListener('click', sendMessage);
+
+function closeForma() {
+  avatarForma.style.display = 'none';
+}
