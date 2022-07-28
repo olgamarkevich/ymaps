@@ -1,0 +1,14 @@
+{{#if msgS.active}} 
+<div class='chat-line chat-line{{msgS.userId}} active'>
+{{else}} 
+<div class='chat-line chat-line{{msgS.userId}}'>
+{{/if}}
+  <div class='chat-line-avatar chat-line-avatar{{msgS.userId}}'></div>
+  <div class='chat-line-user'>{{msgS.userName}}</div>
+  <div class='chat-line-i'>
+    <div class='chat-line-mess'>
+      <div class='chat-line-label'>{{msgS.message}}</div>
+      <span class='chat-line-date'>{{msgS.date}}</span>
+    </div>
+  </div>
+</div>

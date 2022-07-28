@@ -48,7 +48,6 @@ webSocketServer.on('connection', function (ws) {
     }
 
     if (msg.type == 'message') {
-      allmessage.push(msg);
       for (const key in clients) {
         clients[key].send(JSON.stringify(msg));
       }

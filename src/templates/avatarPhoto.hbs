@@ -1,0 +1,14 @@
+{{#if item.avaPhoto}}
+  <div class='chat-user-line'>
+    <div
+      class='chat-user-avatar'
+      style='background-image: url({{item.avatarPhoto}})'
+    ></div>
+    <div class='chat-user-label'>{{item.nameUser}}</div>
+  </div>
+{{else}}
+  <div class='chat-user-line'>
+    <div class='chat-user-avatar'></div>
+    <div class='chat-user-label'>{{item.nameUser}}</div>
+  </div>
+{{/if}}

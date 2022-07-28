@@ -1,5 +1,9 @@
 const socket = new WebSocket('ws://localhost:8081');
 
+import renderUser from './../templates/userActive.hbs';
+import renderMessage from './../templates/message.hbs';
+import avatarPhoto from './../templates/avatarPhoto.hbs';
+
 const messageText = document.querySelector('#messageText');
 const sendButton = document.querySelector('#sendButton');
 const messageContainer = document.querySelector('#messageContainer');
@@ -8,14 +12,10 @@ const loginUser = document.querySelector('#login');
 const loginBtn = document.querySelector('#login-btn');
 const loginForma = document.querySelector('.login');
 
-const chatForma = document.querySelector('.chat');
 const chatContainer = document.querySelector('#messageContainer');
-
 const numberUsers = document.querySelector('#numberUsers');
-const userActive = document.querySelector('.chat-head');
 const users = document.querySelector('.chat-users');
 const avatarsStyle = document.querySelector('#avatars');
-
 const avatarForma = document.querySelector('#avatarForma');
 
 let user = {};
@@ -29,18 +29,12 @@ loginBtn.addEventListener('click', function () {
     socket.send(JSON.stringify(user));
 
     loginForma.style.display = 'none';
-    chatForma.style.display = 'flex';
+    document.querySelector('.chat').style.display = 'flex';
     loginUser.value = '';
 
-    const newUserActive = `
-    <div class="chat-user-line">
-        <div id='avatar' class="chat-user-avatar"></div>
-        <div class="chat-user-label">${user.nameUser}</div>
-    </div>`;
-    userActive.innerHTML += newUserActive;
+    document.querySelector('.chat-head').innerHTML = renderUser({ user });
 
     document.querySelector('.avatar-load-label').textContent = user.nameUser;
-
     document.querySelector('#avatar').addEventListener('click', function () {
       avatarForma.style.display = 'block';
     });
@@ -122,20 +116,9 @@ socket.addEventListener('message', function (event) {
     allUserChat.forEach((item) => {
       if (item.id !== user.id) {
         if (item.avatarPhoto) {
-          const addUser = `
-            <div class="chat-user-line">
-                <div class="chat-user-avatar" style='background-image: url(${item.avatarPhoto})'></div>
-                <div class="chat-user-label">${item.nameUser}</div>
-            </div>`;
-          users.innerHTML += addUser;
-        } else {
-          const addUser = `
-            <div class="chat-user-line">
-                <div class="chat-user-avatar"></div>
-                <div class="chat-user-label">${item.nameUser}</div>
-            </div>`;
-          users.innerHTML += addUser;
+          item.avaPhoto = true;
         }
+        users.innerHTML += avatarPhoto({ item });
       }
 
       if (item.avatarPhoto) {
@@ -151,21 +134,11 @@ socket.addEventListener('message', function (event) {
 
   if (msgS.type == 'message') {
     //сообщения чата
-    let message = `
-        <div class='chat-line chat-line${msgS.userId} ${
-      msgS.userId === user.id ? 'active' : ''
-    }'>
-            <div class='chat-line-avatar chat-line-avatar${msgS.userId}'></div>
-            <div class='chat-line-user'>${msgS.userName}</div>
-            <div class='chat-line-i'>
-              <div class='chat-line-mess'>
-                <div class='chat-line-label'>${msgS.message}</div>
-                <span class='chat-line-date'>${msgS.date}</span>
-              </div>
-            </div>
-          </div>
-        `;
-    chatContainer.innerHTML += message;
+    if (msgS.userId === user.id) {
+      msgS.active = true;
+    }
+
+    chatContainer.innerHTML += renderMessage({ msgS });
     messageContainer.scrollTop = messageContainer.scrollHeight;
   }
 });
@@ -195,7 +168,11 @@ function sendMessage() {
   messageText.value = '';
 }
 
-sendButton.addEventListener('click', sendMessage);
+sendButton.addEventListener('click', function () {
+  if (messageText.value.replace(/\s+/g, '').length) {
+    sendMessage();
+  }
+});
 
 function closeForma() {
   avatarForma.style.display = 'none';
